@@ -19,6 +19,10 @@ app.use(cors())
 app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/tasks",taskRouter)
 
+app.get("/",(req,res)=>{
+    res.send("hello world")
+})
+
 app.use(routeNotFoundMiddle)
 app.use(errorHandlerMiddleware)
 
