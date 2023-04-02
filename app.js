@@ -22,7 +22,7 @@ app.use("/api/v1/tasks",taskRouter)
 app.use(routeNotFoundMiddle)
 app.use(errorHandlerMiddleware)
 
-const port=5000
+const port=process.env.port || 5000
 
 const start=async()=>{
     await connectDB()
