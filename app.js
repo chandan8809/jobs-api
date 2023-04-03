@@ -2,6 +2,7 @@ const express= require("express")
 const { connectDB } = require("./db/connect")
 const { errorHandlerMiddleware } = require("./middleware/error-handler")
 const { routeNotFoundMiddle } = require("./middleware/not-found")
+const authMiddleware=require("./middleware/auth-middleware")
 const cors=require("cors")
 
 
@@ -17,7 +18,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/api/v1/auth",authRouter)
-app.use("/api/v1/tasks",taskRouter)
+app.use("/api/v1/tasks",authMiddleware,taskRouter)
 
 app.get("/",(req,res)=>{
     res.send("hello world")

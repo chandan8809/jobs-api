@@ -1,7 +1,9 @@
 const Task= require("../model/task")
 
 const getAllTasks = async(req,res)=>{
-    const tasks=await Task.find({})
+   
+    const {userId}= req.user
+    const tasks=await Task.find({_id:userId})
     res.status(200).json({tasks})
 }
 
