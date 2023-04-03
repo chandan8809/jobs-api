@@ -3,11 +3,14 @@ const Task= require("../model/task")
 const getAllTasks = async(req,res)=>{
    
     const {userId}= req.user
-    const tasks=await Task.find({_id:userId})
+    const tasks=await Task.find({createdBy:userId})
+    console.log("task",tasks,userId)
     res.status(200).json({tasks})
 }
 
 const createTask = async(req,res)=>{
+    const {userId}= req.user
+    req.body.createdBy=userId
     const task= await Task.create(req.body)
     res.status(201).json({task})
 }

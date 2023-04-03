@@ -9,6 +9,11 @@ const taskSchema= new mongoose.Schema({
         type:String,
         enum : ['pending',"completed"],
         default:"pending",
+    },
+    createdBy:{
+        type:mongoose.Types.ObjectId,
+        ref: 'User',
+        required:[true, "userId needed"]
     }
 })
 
